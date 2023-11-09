@@ -207,6 +207,9 @@ INSERT INTO alunos (nome, data_de_nascimento,primeira_nota, segunda_nota, curso_
 ```sql
 
 -- 5ª Digitação (SQL para criar a consulta acima)
+SELECT nome,data_de_nascimento
+FROM alunos 
+WHERE data_de_nascimento < '2009-01-01';
 
 ```
 ![Relatório 1](resultados_alunos/relatorio1.jpg)
@@ -225,7 +228,7 @@ SELECT nome, primeira_nota, segunda_nota, ROUND(AVG((primeira_nota + segunda_not
 ### 3) Faça uma consulta que calcule o limite de faltas de cada curso de acordo com a carga horária. Considere o limite como 25% da carga horária. Classifique em ordem crescente pelo título do curso.
 ```sql
 
--- 7ª Digitação (SQL para criar a consulta acima)
+SELECT titulo, carga_horaria, carga_horaria * 0.25 AS "limite de faltas"  FROM cursos;
 
 ```
 ![Relatório 3](resultados_alunos/relatorio3.jpg)
@@ -243,9 +246,7 @@ SELECT nome, area_de_atuacao FROM professores WHERE area_de_atuacao LIKE "%desen
 
 ### 5) Faça uma consulta que mostre a quantidade de professores por área de desenvolvimento.
 ```sql
-
--- 9ª Digitação (SQL para criar a consulta acima)
-
+SELECT COUNT( area_de_atuacao) FROM professores WHERE area_de_atuacao LIKE "%desenvolvimento%";
 ```
 ![Relatório 5](resultados_alunos/relatorio5.jpg)
 
@@ -262,8 +263,8 @@ SELECT alunos.nome, cursos.titulo, cursos.carga_horaria FROM alunos INNER JOIN c
 <!-- _________________________ -->
 ### 7) Faça uma consulta que mostre o nome dos professores e o título do curso que lecionam. Classifique pelo nome do professor.
 ```sql
+SELECT professores.nome, professores.area_de_atuacao FROM professores INNER JOIN cursos ON professores.curso_id = cursos.id;
 
--- 11ª Digitação (SQL para criar a consulta acima)
 
 ```
 ![Relatório 7](resultados_alunos/relatorio7.jpg)
@@ -271,8 +272,8 @@ SELECT alunos.nome, cursos.titulo, cursos.carga_horaria FROM alunos INNER JOIN c
 <!-- _________________________ -->
 ### 8) Faça uma consulta que mostre o nome dos alunos, o título dos cursos que fazem, e o professor de cada curso.
 ```sql
-
 SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alunos LEFT JOIN cursos ON alunos.curso_id = cursos.id LEFT JOIN professores ON professores.curso_id = cursos.id;
+
 
 -- Explicação
 
@@ -289,7 +290,7 @@ SELECT alunos.nome, cursos.titulo, professores.nome AS "Nome professor" FROM alu
 ### 9) Faça uma consulta que mostre a quantidade de alunos que cada curso possui. Classifique os resultados em ordem descrecente de acordo com a quantidade de alunos.
 ```sql
 
--- 13ª Digitação (SQL para criar a consulta acima)
+
 
 ```
 ![Relatório 9](resultados_alunos/relatorio9.jpg)
